@@ -29,14 +29,17 @@ class AuthController extends Controller
         $user->roles()->attach($roles);
 
         // create a token for the user
-        $token = $user->createToken($request->email);
+        //$token = $user->createToken($request->email);
 
         // return  the user and token and a message
-        return [
-            'user' => new UserResource($user),
-            'token' => $token->plainTextToken,
-            'message' => 'User registered successfully',
-        ];
+        // return [
+        //     'user' => new UserResource($user),
+        //     'token' => $token->plainTextToken,
+        //     'message' => 'User registered successfully',
+        // ];
+        return response()->json([
+            'message' => 'User created',
+        ], 200);
     }
 
 
