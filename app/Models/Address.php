@@ -19,6 +19,7 @@ class Address extends Model
         'province',
         'country',
         'zip_code',
+        'type',
     ];
 
     public function addressable(): MorphTo

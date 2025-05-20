@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('learner_personal_infos', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('learner_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
+
             $table->string('psa_birth_certificate_no')->nullable();
             $table->string('first_name');
             $table->string('last_name');

@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\GradeLevelController;
+use App\Http\Controllers\LearnerRegistrationController;
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SchoolYearController;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,11 +31,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', function (Request $request) {
         return new UserResource($request->user);
     });
-
-    // todo: add authorization to the routes in the controller, idk
-    Route::apiResource('students', StudentController::class); // ! temporary
 });
 
+
+
+Route::apiResource('school-year', SchoolYearController::class);
+Route::apiResource('school', SchoolController::class);
+
+Route::post('/learner-registration', [LearnerRegistrationController::class, 'store']);
+
+Route::apiResource('grade-levels', GradeLevelController::class);
 
 Route::get('/', function () {
     return 'Hello World!';

@@ -14,6 +14,7 @@ class SchoolYearController extends Controller
     public function index()
     {
         //
+        return response()->json(SchoolYear::all());
     }
 
     /**
@@ -22,6 +23,12 @@ class SchoolYearController extends Controller
     public function store(StoreSchoolYearRequest $request)
     {
         //
+        $schoolYear = SchoolYear::create($request->validated());
+
+        return response()->json([
+            'message' => 'School year created successfully.',
+            'data' => $schoolYear
+        ], 201);
     }
 
     /**
@@ -30,6 +37,7 @@ class SchoolYearController extends Controller
     public function show(SchoolYear $schoolYear)
     {
         //
+        return response()->json($schoolYear);
     }
 
     /**
@@ -38,6 +46,12 @@ class SchoolYearController extends Controller
     public function update(UpdateSchoolYearRequest $request, SchoolYear $schoolYear)
     {
         //
+        $schoolYear->update($request->validated());
+
+        return response()->json([
+            'message' => 'School year updated successfully.',
+            'data' => $schoolYear
+        ]);
     }
 
     /**
@@ -46,5 +60,10 @@ class SchoolYearController extends Controller
     public function destroy(SchoolYear $schoolYear)
     {
         //
+        $schoolYear->delete();
+
+        return response()->json([
+            'message' => 'School year deleted successfully.'
+        ]);
     }
 }

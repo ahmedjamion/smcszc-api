@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('learners', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('learner_personal_info_id')
-                ->constrained()
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
+            $table->strint('learner_reference_number')->nullable();
+
+            // $table->foreignId('learner_personal_info_id')
+            //     ->constrained()
+            //     ->onUpdate('cascade')
+            //     ->onDelete('restrict');
 
             $table->timestamps();
         });
